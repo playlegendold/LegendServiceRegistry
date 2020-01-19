@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.10")
+    annotationProcessor("org.projectlombok:lombok:1.18.10")
     testCompile("junit", "junit", "4.12")
 }
 
