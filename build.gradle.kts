@@ -9,7 +9,6 @@ plugins {
 }
 
 subprojects {
-
     apply(plugin = "java")
     apply(plugin = "com.github.johnrengelman.shadow")
 
@@ -25,11 +24,5 @@ subprojects {
 
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_12
-    }
-
-    tasks.withType<ShadowJar>() {
-        manifest {
-            attributes["Main-Class"] = "HelloKt"
-        }
     }
 }
