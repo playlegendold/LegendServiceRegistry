@@ -24,12 +24,6 @@ repositories {
 
 dependencies {
     compileOnly("net.playlegend:bewear-api:1.14.4-dev")
-    compile(project(":common"))
-    compileOnly("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.projectlombok:lombok:1.18.10")
-    testCompile("junit", "junit", "4.12")
-}
-
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_12
+    implementation(project(":common"))
+    testImplementation("junit", "junit", "4.12")
 }

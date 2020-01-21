@@ -10,10 +10,6 @@ repositories {
 }
 
 dependencies {
-    compile(project(":common"))
-    testCompile("junit", "junit", "4.12")
-}
-
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    implementation(project(":common"))
+    testImplementation("junit", "junit", "4.12")
 }
