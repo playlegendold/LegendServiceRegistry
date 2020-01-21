@@ -1,15 +1,15 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 group = "net.playlegend"
 version = "1.0.0"
 
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    `maven-publish`
+    id("com.github.johnrengelman.shadow") version "5.1.0"
 }
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "maven-publish")
     apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {
@@ -19,10 +19,13 @@ subprojects {
     dependencies {
         compileOnly("org.projectlombok:lombok:1.18.10")
         annotationProcessor("org.projectlombok:lombok:1.18.10")
-        testImplementation("junit", "junit", "4.12")
     }
 
-    configure<JavaPluginConvention> {
+    java {
         sourceCompatibility = JavaVersion.VERSION_12
+        targetCompatibility = JavaVersion.VERSION_12
+        withSourcesJar()
     }
+
+    tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
 }
