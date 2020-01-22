@@ -10,7 +10,7 @@ version = if (System.getenv("CI") != null) {
 
 dependencies {
     compileOnly("net.playlegend:bewear-api:1.15.1-dev")
-    implementation(project(":common"))
+    implementation(project(":legendserviceregistry-common"))
 }
 
 publishing {
