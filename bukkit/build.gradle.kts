@@ -1,7 +1,7 @@
 val branch: String? = System.getenv("BITBUCKET_BRANCH")
 val tag: String? = System.getenv("BITBUCKET_TAG")
 
-group = "net.playlegend.legendserviceregistry"
+group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
     (branch ?: tag).toString()
 } else {
