@@ -1,4 +1,9 @@
-name: service-registry
+name: LegendServiceRegistry
+version: 1.0.0
+description: Legends custom service registry
+author: Legend Dev-Team
+authors:
+  - Kroseida
+prefix: LegendServiceRegistry
 main: net.playlegend.legendserviceregistry.bukkit.BukkitLegendServiceRegistryPlugin
-version: snapshot
-author: Kroseida
+api-version: 1.15

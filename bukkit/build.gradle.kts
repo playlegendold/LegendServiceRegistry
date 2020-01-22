@@ -1,9 +1,12 @@
-plugins {
-    java
-}
+val branch: String? = System.getenv("BITBUCKET_BRANCH")
+val tag: String? = System.getenv("BITBUCKET_TAG")
 
-group = "net.playlegend"
-version = "1.0.0"
+group = "net.playlegend.legendserviceregistry"
+version = if (System.getenv("CI") != null) {
+    (branch ?: tag).toString()
+} else {
+    "dev"
+}.replace("/", "-")
 
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
@@ -23,13 +26,32 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.playlegend:bewear-api:1.14.4-dev")
-    compile(project(":common"))
-    compileOnly("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.projectlombok:lombok:1.18.10")
-    testCompile("junit", "junit", "4.12")
+    compileOnly("net.playlegend:bewear-api:1.15.1-dev")
+    implementation(project(":common"))
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_12
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name.toLowerCase()
+            version = project.version.toString()
+
+            from(components["java"])
+            artifact(tasks["shadowJar"])
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username = System.getenv("legendUser")
+                password = System.getenv("legendPassword")
+            }
+            url = uri(if (System.getenv("BITBUCKET_TAG") != null) {
+                "https://repository.playlegend.net/legend-release/"
+            } else {
+                "https://repository.playlegend.net/legend-snapshots/"
+            })
+        }
+    }
 }

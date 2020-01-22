@@ -1,0 +1,20 @@
+image: gradle:jdk12
+
+pipelines:
+  default:
+    - step:
+        name: deploy:snapshot
+        caches:
+          - gradle
+        script:
+          - bash ./gradlew --build-cache assemble
+          - bash ./gradlew publish
+  tags:
+    v*:
+      - step:
+          name: deploy:release
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew --build-cache assemble
+            - bash ./gradlew publish

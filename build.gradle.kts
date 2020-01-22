@@ -1,20 +1,31 @@
-plugins {
-    java
-}
-
 group = "net.playlegend"
 version = "1.0.0"
 
-repositories {
-    mavenCentral()
+plugins {
+    java
+    `maven-publish`
+    id("com.github.johnrengelman.shadow") version "5.1.0"
 }
 
-dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.projectlombok:lombok:1.18.10")
-    testCompile("junit", "junit", "4.12")
-}
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "maven-publish")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly("org.projectlombok:lombok:1.18.10")
+        annotationProcessor("org.projectlombok:lombok:1.18.10")
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_12
+        targetCompatibility = JavaVersion.VERSION_12
+        withSourcesJar()
+    }
+
+    tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
 }
