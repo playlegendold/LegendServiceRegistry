@@ -13,7 +13,22 @@ subprojects {
     apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://papermc.io/repo/repository/maven-public/")
+        maven {
+            url = uri("https://repository.playlegend.net/legend")
+            credentials {
+                if (System.getenv("CI") != null) {
+                    username = System.getenv("legendUser")
+                    password = System.getenv("legendPassword")
+                } else {
+                    username = project.properties["legendUser"] as String?
+                    password = project.properties["legendPassword"] as String?
+                }
+            }
+        }
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
