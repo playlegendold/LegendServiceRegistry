@@ -1,14 +1,31 @@
 image: gradle:jdk12
 
 pipelines:
-  default:
-    - step:
-        name: deploy:snapshot
-        caches:
-          - gradle
-        script:
-          - bash ./gradlew --build-cache assemble
-          - bash ./gradlew publish
+  branches:
+    dev:
+      - step:
+          name: deploy:snapshot
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew --build-cache assemble
+            - bash ./gradlew publish
+    feature/*:
+      - step:
+          name: deploy:feature
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew --build-cache assemble
+            - bash ./gradlew publish
+    bugfix/*:
+      - step:
+          name: deploy:bugfix
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew --build-cache assemble
+            - bash ./gradlew publish
   tags:
     v*:
       - step:
