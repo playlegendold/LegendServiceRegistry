@@ -27,7 +27,7 @@ pipelines:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew publish
   tags:
-    '*':
+    '*.*.*':
       - step:
           name: deploy:release
           caches:
