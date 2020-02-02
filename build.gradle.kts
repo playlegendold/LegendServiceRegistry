@@ -16,7 +16,7 @@ subprojects {
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://papermc.io/repo/repository/maven-public/")
         maven {
-            url = uri("https://repository.playlegend.net/legend")
+            url = uri("https://repository.playlegend.dev/legend")
             credentials {
                 if (System.getenv("CI") != null) {
                     username = System.getenv("legendUser")
