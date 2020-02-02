@@ -30,9 +30,9 @@ publishing {
                 password = System.getenv("legendPassword")
             }
             url = uri(if (System.getenv("BITBUCKET_TAG") != null) {
-                "https://repository.playlegend.net/legend-release/"
+                "https://repository.playlegend.dev/legend-release/"
             } else {
-                "https://repository.playlegend.net/legend-snapshots/"
+                "https://repository.playlegend.dev/legend-snapshots/"
             })
         }
     }
