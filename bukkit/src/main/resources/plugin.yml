@@ -1,5 +1,5 @@
 name: LegendServiceRegistry
-version: 1.0.0
+version: @VERSION@
 description: Legends custom service registry
 author: Legend Dev-Team
 authors:

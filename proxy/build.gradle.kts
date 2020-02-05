@@ -13,6 +13,14 @@ dependencies {
     implementation(project(":legendserviceregistry-common"))
 }
 
+val tokens = mapOf("VERSION" to project.version)
+
+tasks.withType<ProcessResources> {
+    filesMatching("*.yml") {
+        filter<org.apache.tools.ant.filters.ReplaceTokens>("tokens" to tokens)
+    }
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
