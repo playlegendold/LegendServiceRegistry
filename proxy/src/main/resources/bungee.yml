@@ -1,4 +1,4 @@
 name: LegendServiceRegistry
-main: net.playlegend.legendserviceregistry.ProxyLegendServiceRegistryPlugin
+main: net.playlegend.legendserviceregistry.proxy.ProxyLegendServiceRegistryPlugin
 version: @VERSION@
-author: Kroseida
+author: Legend Dev-Team
