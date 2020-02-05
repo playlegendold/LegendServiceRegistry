@@ -1,4 +1,4 @@
-name: service-registry
+name: LegendServiceRegistry
 main: net.playlegend.legendserviceregistry.ProxyLegendServiceRegistryPlugin
-version: snapshot
+version: @VERSION@
 author: Kroseida
