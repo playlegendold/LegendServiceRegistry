@@ -26,6 +26,13 @@ pipelines:
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew publish
+    master:
+      - step:
+          name: sonar:snapshot
+          caches:
+            - gradle
+          script:
+            - bash ./gradlew sonarqube -Dsonar.projectKey=LegendServiceRegistry -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=f087a06b40faf9da823e1db6388d07fefae8f115
   tags:
     '*.*.*':
       - step:
