@@ -13,6 +13,11 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.10")
 }
 
+tasks.register<Jar>("fatSources") {
+    from(sourceSets["main"].allSource)
+    archiveClassifier.set("sources")
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -21,6 +26,8 @@ publishing {
             version = project.version.toString()
 
             from(components["java"])
+            artifact(tasks["shadowJar"])
+            artifact(tasks["fatSources"])
         }
     }
     repositories {
