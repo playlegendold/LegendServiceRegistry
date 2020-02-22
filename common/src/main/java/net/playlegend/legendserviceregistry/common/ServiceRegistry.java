@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-class ServiceRegistry {
+final class ServiceRegistry {
 
     private static final Map<Class<? extends Service>, Service> SERVICES = new ConcurrentHashMap<>();
     private static final Map<ServiceAccessorOwner, ServiceAccessor> ACCESSORS = new HashMap<>();
