@@ -21,6 +21,11 @@ tasks.withType<ProcessResources> {
     }
 }
 
+tasks.register<Jar>("fatSources") {
+    from(sourceSets["main"].allSource, project(":legendserviceregistry-common").sourceSets["main"].allSource)
+    archiveClassifier.set("sources")
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -30,6 +35,7 @@ publishing {
 
             from(components["java"])
             artifact(tasks["shadowJar"])
+            artifact(tasks["fatSources"])
         }
     }
     repositories {
