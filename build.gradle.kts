@@ -4,6 +4,7 @@ version = "1.0.0"
 plugins {
     java
     `maven-publish`
+    checkstyle
     id("com.github.johnrengelman.shadow") version "5.1.0"
     id("org.sonarqube") version "2.7"
 }
@@ -11,6 +12,7 @@ plugins {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
+    apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {

@@ -13,17 +13,17 @@ public class ServiceAccessor {
     @Getter
     private ServiceAccessorOwner owner;
 
-    public ServiceAccessor(ServiceAccessorOwner owner) {
+    public ServiceAccessor(final ServiceAccessorOwner owner) {
         this.owner = owner;
         ServiceRegistry.registerAccessor(owner, this);
     }
 
-    public <T extends Service> T access(Class<T> clazz) {
+    public <T extends Service> T access(final Class<T> clazz) {
         dependentServices.add(clazz);
         return ServiceRegistry.access(clazz);
     }
 
-    public <T extends Service> void register(Class<T> clazz, T service) {
+    public <T extends Service> void register(final Class<T> clazz, final T service) {
         ServiceRegistry.registerService(clazz, service);
     }
 

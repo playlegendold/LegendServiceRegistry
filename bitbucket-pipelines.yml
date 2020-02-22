@@ -9,6 +9,7 @@ pipelines:
             - gradle
           script:
             - bash ./gradlew --build-cache assemble
+            - bash ./gradlew checkstyleMain
             - bash ./gradlew publish
     feature/*:
       - step:
@@ -17,6 +18,7 @@ pipelines:
             - gradle
           script:
             - bash ./gradlew --build-cache assemble
+            - bash ./gradlew checkstyleMain
             - bash ./gradlew publish
     bugfix/*:
       - step:
@@ -25,6 +27,7 @@ pipelines:
             - gradle
           script:
             - bash ./gradlew --build-cache assemble
+            - bash ./gradlew checkstyleMain
             - bash ./gradlew publish
     master:
       - step:
@@ -32,7 +35,8 @@ pipelines:
           caches:
             - gradle
           script:
-            - bash ./gradlew sonarqube -Dsonar.projectKey=LegendServiceRegistry -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=f087a06b40faf9da823e1db6388d07fefae8f115 -Dsonar.projectVersion=master
+            - bash ./gradlew checkstyleMain
+            - bash ./gradlew sonarqube -Dsonar.projectKey=LegendServiceRegistry -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=$SONAR_LOGIN -Dsonar.projectVersion=master
   tags:
     '*.*.*':
       - step:
@@ -41,4 +45,5 @@ pipelines:
             - gradle
           script:
             - bash ./gradlew --build-cache assemble
+            - bash ./gradlew checkstyleMain
             - bash ./gradlew publish
