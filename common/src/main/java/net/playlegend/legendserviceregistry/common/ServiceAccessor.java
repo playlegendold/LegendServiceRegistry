@@ -14,7 +14,7 @@ public class ServiceAccessor {
     /**
      * Contains all services of a plugin.
      */
-    private final List<Class<? extends Service>> dependentServices = new ArrayList<Class<? extends Service>>();
+    private final List<Class<? extends Service>> dependentServices = new ArrayList<>();
 
     /**
      * Owner of this {@link ServiceAccessor}.
@@ -59,4 +59,5 @@ public class ServiceAccessor {
     public List<Class<? extends Service>> getDependentServices() {
         return Collections.unmodifiableList(dependentServices);
     }
+
 }
