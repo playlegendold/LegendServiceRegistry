@@ -35,8 +35,8 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:1.18.10")
-        annotationProcessor("org.projectlombok:lombok:1.18.10")
+        compileOnly("org.projectlombok:lombok:1.18.12")
+        annotationProcessor("org.projectlombok:lombok:1.18.12")
     }
 
     java {
