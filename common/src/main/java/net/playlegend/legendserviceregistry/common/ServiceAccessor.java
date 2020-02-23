@@ -1,8 +1,6 @@
 package net.playlegend.legendserviceregistry.common;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import lombok.Getter;
 
@@ -14,7 +12,7 @@ public class ServiceAccessor {
     /**
      * Contains all services of a plugin.
      */
-    private final List<Class<? extends Service>> dependentServices = new ArrayList<>();
+    private final Set<Class<? extends Service>> dependentServices = new HashSet<>();
 
     /**
      * Owner of this {@link ServiceAccessor}.
@@ -56,8 +54,8 @@ public class ServiceAccessor {
      * Get all {@link Service}s of a plugin.
      * @return a {@link List} that contains all registered {@link Service}s.
      */
-    public List<Class<? extends Service>> getDependentServices() {
-        return Collections.unmodifiableList(dependentServices);
+    public Set<Class<? extends Service>> getDependentServices() {
+        return Collections.unmodifiableSet(dependentServices);
     }
 
 }
