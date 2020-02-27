@@ -1,8 +1,6 @@
 package net.playlegend.legendserviceregistry.common;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import lombok.Getter;
 
@@ -11,10 +9,7 @@ import lombok.Getter;
  */
 public class ServiceAccessor {
 
-    /**
-     * Contains all services of a plugin.
-     */
-    private final List<Class<? extends Service>> dependentServices = new ArrayList<>();
+    private final Set<Class<? extends Service>> dependentServices = new HashSet<>();
 
     /**
      * Owner of this {@link ServiceAccessor}.
@@ -24,6 +19,7 @@ public class ServiceAccessor {
 
     /**
      * Create a new instance of a {@link ServiceAccessor}.
+     *
      * @param owner {@link ServiceAccessorOwner} of the accessor.
      */
     public ServiceAccessor(final ServiceAccessorOwner owner) {
@@ -33,6 +29,7 @@ public class ServiceAccessor {
 
     /**
      * Get a {@link Service} from a {@link Class} out of plugin specific {@link Service}s.
+     *
      * @param clazz {@link Class} of the service.
      * @param <T>
      * @return the requested {@link Service}.
@@ -44,7 +41,8 @@ public class ServiceAccessor {
 
     /**
      * Register a {@link Service} for a plugin.
-     * @param clazz {@link Service}s {@link Class}.
+     *
+     * @param clazz   {@link Service}s {@link Class}.
      * @param service that should be registered.
      * @param <T>
      */
@@ -53,11 +51,21 @@ public class ServiceAccessor {
     }
 
     /**
-     * Get all {@link Service}s of a plugin.
-     * @return a {@link List} that contains all registered {@link Service}s.
+     * Get all dependent {@link Service}s of a plugin.
+     *
+     * @return a {@link List} that contains all dependent {@link Service}s of this accessor.
      */
-    public List<Class<? extends Service>> getDependentServices() {
-        return Collections.unmodifiableList(dependentServices);
+    public Set<Class<? extends Service>> getDependentServices() {
+        return Collections.unmodifiableSet(dependentServices);
+    }
+
+    /**
+     * Get all registered {@link Service}s
+     *
+     * @return a {@link Map} that contains all registered {@link Service}s.
+     */
+    public Map<Class<? extends Service>, Service> getActiveServices() {
+        return ServiceRegistry.getAllServices();
     }
 
 }

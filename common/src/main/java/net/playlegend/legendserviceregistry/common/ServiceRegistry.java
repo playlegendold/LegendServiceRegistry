@@ -1,5 +1,6 @@
 package net.playlegend.legendserviceregistry.common;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +25,8 @@ final class ServiceRegistry {
 
     /**
      * Register a {@link ServiceAccessor} for a specific {@link ServiceAccessorOwner}.
-     * @param owner {@link ServiceAccessorOwner}.
+     *
+     * @param owner    {@link ServiceAccessorOwner}.
      * @param accessor {@link ServiceAccessor}.
      */
     protected static void registerAccessor(final ServiceAccessorOwner owner, final ServiceAccessor accessor) {
@@ -36,7 +38,8 @@ final class ServiceRegistry {
 
     /**
      * Register a {@link Service} for a given class.
-     * @param clazz class.
+     *
+     * @param clazz   class.
      * @param service {@link Service}.
      * @param <T>
      */
@@ -46,11 +49,16 @@ final class ServiceRegistry {
 
     /**
      * Get a registered {@link Service} to work with it.
+     *
      * @param clazz service class.
      * @param <T>
      * @return {@link Service} of the given class.
      */
     protected static <T extends Service> T access(final Class<T> clazz) {
         return (T) SERVICES.get(clazz);
+    }
+
+    protected static Map<Class<? extends Service>, Service> getAllServices() {
+        return Collections.unmodifiableMap(SERVICES);
     }
 }
