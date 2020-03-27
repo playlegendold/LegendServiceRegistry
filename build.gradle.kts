@@ -15,6 +15,11 @@ subprojects {
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
 
+    checkstyle {
+        toolVersion = "8.30"
+        config = project.resources.text.fromUri("https://static.playlegend.dev/checkstyle.xml")
+    }
+
     repositories {
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://papermc.io/repo/repository/maven-public/")
@@ -22,11 +27,11 @@ subprojects {
             url = uri("https://repository.playlegend.dev/legend")
             credentials {
                 if (System.getenv("CI") != null) {
-                    username = System.getenv("legendUser")
-                    password = System.getenv("legendPassword")
+                    username = System.getenv("repositoryUser")
+                    password = System.getenv("repositoryPassword")
                 } else {
-                    username = project.properties["legendUser"] as String?
-                    password = project.properties["legendPassword"] as String?
+                    username = project.properties["repositoryUser"] as String?
+                    password = project.properties["repositoryPassword"] as String?
                 }
             }
         }

@@ -5,10 +5,11 @@ package net.playlegend.legendserviceregistry.common;
  */
 public interface ServiceAccessorOwner {
 
-    /**
-     * Get the name of the {@link ServiceAccessorOwner}.
-     * @return name.
-     */
-    String getName();
+  /**
+   * Get the name of the {@link ServiceAccessorOwner}.
+   *
+   * @return name.
+   */
+  String getName();
 
 }
