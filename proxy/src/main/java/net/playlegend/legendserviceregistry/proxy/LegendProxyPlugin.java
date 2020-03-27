@@ -10,18 +10,18 @@ import net.playlegend.legendserviceregistry.common.ServiceAccessorOwner;
  */
 public abstract class LegendProxyPlugin extends Plugin implements ServiceAccessorOwner {
 
-    /**
-     * Plugin specific {@link ServiceAccessor}.
-     */
-    @Getter
-    private final ServiceAccessor accessor = new ServiceAccessor(this);
+  /**
+   * Plugin specific {@link ServiceAccessor}.
+   */
+  @Getter
+  private final ServiceAccessor accessor = new ServiceAccessor(this);
 
-    /**
-     * Get the name of the {@link Plugin}.
-     */
-    @Override
-    public String getName() {
-        return this.getDescription().getName();
-    }
+  /**
+   * Get the name of the {@link Plugin}.
+   */
+  @Override
+  public String getName() {
+    return this.getDescription().getName();
+  }
 
 }

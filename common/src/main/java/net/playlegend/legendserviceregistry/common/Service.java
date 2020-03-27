@@ -5,10 +5,13 @@ package net.playlegend.legendserviceregistry.common;
  */
 public interface Service {
 
-    /**
-     * Check with this method wether the selected service is available or not.
-     * @return true when it is available.
-     */
-    boolean isAvailable();
+  /**
+   * Check with this method wether the selected service is available or not.
+   *
+   * @return true when it is available.
+   */
+  default boolean isAvailable() {
+    return true;
+  }
 
 }

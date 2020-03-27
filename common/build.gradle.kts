@@ -33,8 +33,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = System.getenv("legendUser")
-                password = System.getenv("legendPassword")
+                username = System.getenv("repositoryUser")
+                password = System.getenv("repositoryPassword")
             }
             url = uri(if (System.getenv("BITBUCKET_TAG") != null) {
                 "https://repository.playlegend.dev/legend-release/"
