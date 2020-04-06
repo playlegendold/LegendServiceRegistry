@@ -9,7 +9,7 @@ version = if (System.getenv("CI") != null) {
 }.replace("/", "-")
 
 dependencies {
-    compileOnly("io.github.waterfallmc:waterfall-api:1.15-SNAPSHOT")
+    compileOnly("net.playlegend:legendproxy:dev")
     implementation(project(":legendserviceregistry-common"))
 }
 

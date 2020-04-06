@@ -5,8 +5,6 @@ pipelines:
     dev:
       - step:
           name: deploy:snapshot
-          caches:
-            - gradle
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew checkstyleMain
@@ -14,8 +12,6 @@ pipelines:
     feature/*:
       - step:
           name: deploy:feature
-          caches:
-            - gradle
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew checkstyleMain
@@ -23,8 +19,6 @@ pipelines:
     bugfix/*:
       - step:
           name: deploy:bugfix
-          caches:
-            - gradle
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew checkstyleMain
@@ -32,18 +26,8 @@ pipelines:
     master:
       - step:
           name: sonar:snapshot
-          caches:
-            - gradle
-          script:
-            - bash ./gradlew checkstyleMain
-            - bash ./gradlew sonarqube -Dsonar.projectKey=LegendServiceRegistry -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=$SONAR_LOGIN -Dsonar.projectVersion=master
-  tags:
-    '*.*.*':
-      - step:
-          name: deploy:release
-          caches:
-            - gradle
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew checkstyleMain
             - bash ./gradlew publish
+            - bash ./gradlew sonarqube -Dsonar.projectKey=LegendServiceRegistry -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=$SONAR_LOGIN -Dsonar.projectVersion=master
