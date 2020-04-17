@@ -45,8 +45,8 @@ subprojects {
     }
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_12
-        targetCompatibility = JavaVersion.VERSION_12
+        sourceCompatibility = JavaVersion.VERSION_14
+        targetCompatibility = JavaVersion.VERSION_14
     }
 
     tasks.withType<JavaCompile> { options.encoding = "UTF-8" }

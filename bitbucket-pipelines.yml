@@ -1,4 +1,4 @@
-image: gradle:jdk12
+image: gradle:jdk14
 
 pipelines:
   branches:
@@ -25,7 +25,7 @@ pipelines:
             - bash ./gradlew publish
     master:
       - step:
-          name: sonar:snapshot
+          name: deploy:master
           script:
             - bash ./gradlew --build-cache assemble
             - bash ./gradlew checkstyleMain
