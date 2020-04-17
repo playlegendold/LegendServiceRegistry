@@ -8,11 +8,6 @@ version = if (System.getenv("CI") != null) {
     "dev"
 }.replace("/", "-")
 
-dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.10")
-    annotationProcessor("org.projectlombok:lombok:1.18.10")
-}
-
 tasks.register<Jar>("fatSources") {
     from(sourceSets["main"].allSource)
     archiveClassifier.set("sources")
