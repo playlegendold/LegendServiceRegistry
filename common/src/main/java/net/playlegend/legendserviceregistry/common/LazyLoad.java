@@ -16,7 +16,7 @@ public class LazyLoad<T extends Service> {
       service = accessor.access(serviceName);
     }
     if (service == null) {
-      throw new NullPointerException("Service is not loaded yet!");
+      throw new IllegalStateException("Service is not loaded yet!");
     }
     return service;
   }
