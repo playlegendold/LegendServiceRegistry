@@ -1,9 +1,8 @@
-val branch: String? = System.getenv("BITBUCKET_BRANCH")
-val tag: String? = System.getenv("BITBUCKET_TAG")
+val branch: String = System.getenv("GITHUB_REF").replace("refs/heads/", "")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
-    (branch ?: tag).toString()
+    branch
 } else {
     "dev"
 }.replace("/", "-")
