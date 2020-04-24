@@ -9,6 +9,13 @@ plugins {
     id("org.sonarqube") version "2.7"
 }
 
+tasks.create<Copy>("copyHooks") {
+    from(file("./hooks/"))
+    into(file("./.git/hooks/"))
+}
+
+tasks.getByPath("prepareKotlinBuildScriptModel").dependsOn("copyHooks")
+
 subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
@@ -16,7 +23,7 @@ subprojects {
     apply(plugin = "com.github.johnrengelman.shadow")
 
     checkstyle {
-        toolVersion = "8.30"
+        toolVersion = "8.31"
         config = project.resources.text.fromUri("https://static.playlegend.dev/checkstyle.xml")
     }
 

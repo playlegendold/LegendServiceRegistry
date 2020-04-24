@@ -1,0 +1,41 @@
+name: Analyze branch
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - 'feature\/*'
+      - 'bugfix\/*'
+      - 'other\/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup sonar scanner
+        uses: warchant/setup-sonar-scanner@v1
+      - name: 'Checkout repository on branch: ${{ github.REF }}'
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.REF }}
+          fetch-depth: 0
+      - if: endsWith(github.REF, '/master') != true
+        name: 'Run an analysis of the ${{ github.REF }} branch'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: sonar-scanner
+          -Dsonar.host.url=https://sonar.playlegend.dev
+          -Dsonar.login=${{ secrets.sonarToken }}
+          -Dsonar.branch.name=${GITHUB_REF:11}
+          -Dsonar.scm.provider=git
+      - if: endsWith(github.REF, '/master') == true
+        name: 'Run an analysis of the master branch'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: sonar-scanner
+          -Dsonar.host.url=https://sonar.playlegend.dev
+          -Dsonar.login=${{ secrets.sonarToken }}
+          -Dsonar.projectKey=${{ secrets.sonarProject }}
+          -Dsonar.scm.provider=git
+          -Dsonar.java.binaries=/tmp
