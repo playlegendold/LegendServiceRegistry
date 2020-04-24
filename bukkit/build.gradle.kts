@@ -1,8 +1,8 @@
-val branch: String = System.getenv("GITHUB_REF").replace("refs/heads/", "")
+val branch: String? = System.getenv("GITHUB_REF").replace("refs/heads/", "")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
-    branch
+    branch.toString()
 } else {
     "dev"
 }.replace("/", "-")
