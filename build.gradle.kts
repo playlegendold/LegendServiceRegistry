@@ -7,6 +7,11 @@ plugins {
     checkstyle
     id("com.github.johnrengelman.shadow") version "5.1.0"
     id("org.sonarqube") version "2.7"
+    id("com.gorylenko.gradle-git-properties") version "2.2.2"
+}
+
+gitProperties {
+    gitPropertiesName = "git.properties"
 }
 
 tasks.create<Copy>("copyHooks") {
@@ -21,6 +26,7 @@ subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "com.gorylenko.gradle-git-properties")
 
     checkstyle {
         toolVersion = "8.31"
