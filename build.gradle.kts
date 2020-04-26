@@ -10,10 +10,6 @@ plugins {
     id("com.gorylenko.gradle-git-properties") version "2.2.2"
 }
 
-gitProperties {
-    gitPropertiesName = "git.properties"
-}
-
 tasks.create<Copy>("copyHooks") {
     from(file("./hooks/"))
     into(file("./.git/hooks/"))
@@ -31,6 +27,14 @@ subprojects {
     checkstyle {
         toolVersion = "8.31"
         config = project.resources.text.fromUri("https://static.playlegend.dev/checkstyle.xml")
+    }
+
+    gitProperties {
+        gitPropertiesName = "git.properties"
+        dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        keys = arrayOf("git.branch", "git.build.host", "git.build.version", "git.commit.id", "git.commit.id.abbrev",
+                "git.commit.message.full", "git.commit.message.short", "git.commit.time", "git.commit.user.email",
+                "git.commit.user.name", "git.remote.origin.url", "git.total.commit.count").toMutableList()
     }
 
     repositories {
