@@ -31,4 +31,4 @@ jobs:
           repositoryUser: ${{ secrets.repositoryUser }}
           repositoryPassword: ${{ secrets.repositoryPassword }}
       - name: 'Run an analysis of the ${{ steps.extract_branch.outputs.branch }} branch'
-        run: ./gradlew sonarqube -Dsonar.projectKey=${{ secrets.sonarProject }} -Dsonar.host.url=https://sonar.playlegend.dev -Dsonar.login=${{ secrets.sonarToken }} -Dsonar.branch.name=${{ steps.extract_branch.outputs.branch }} -Dsonar.projectVersion=${{ steps.extract_branch.outputs.branch }}
+        run: ./gradlew sonarqube -Dsonar.projectKey=${{ secrets.sonarProject }} -Dsonar.host.url=https://sonar.playlegend.net -Dsonar.login=${{ secrets.sonarToken }} -Dsonar.branch.name=${{ steps.extract_branch.outputs.branch }} -Dsonar.projectVersion=${{ steps.extract_branch.outputs.branch }}
