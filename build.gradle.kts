@@ -26,7 +26,7 @@ subprojects {
 
     checkstyle {
         toolVersion = "8.31"
-        config = project.resources.text.fromUri("https://static.playlegend.dev/checkstyle.xml")
+        config = project.resources.text.fromUri("https://static.playlegend.net/checkstyle.xml")
     }
 
     gitProperties {
@@ -41,7 +41,7 @@ subprojects {
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://papermc.io/repo/repository/maven-public/")
         maven {
-            url = uri("https://repository.playlegend.dev/legend")
+            url = uri("https://repository.playlegend.net/artifactory/legend")
             credentials {
                 if (System.getenv("CI") != null) {
                     username = System.getenv("repositoryUser")
