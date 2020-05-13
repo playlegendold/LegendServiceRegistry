@@ -43,7 +43,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.dev/legend-internal")
+            url = uri("https://repository.playlegend.net/artifactory/legend")
         }
     }
 }
