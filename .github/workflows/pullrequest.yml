@@ -28,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: sonar-scanner
-          -Dsonar.host.url=https://sonar.playlegend.dev
+          -Dsonar.host.url=https://sonar.playlegend.net
           -Dsonar.login=${{ secrets.sonarToken }}
           -Dsonar.projectKey=${{ secrets.sonarProject }}
           -Dsonar.pullrequest.key=${{ github.event.number }}
