@@ -47,9 +47,12 @@ public class ServiceAccessor {
    *
    * @param clazz   {@link Service}s {@link Class}.
    * @param service that should be registered.
+   *
+   * @return this instance for multi register
    */
-  public <T extends Service> void register(final Class<T> clazz, final T service) {
+  public <T extends Service> ServiceAccessor register(final Class<T> clazz, final T service) {
     ServiceRegistry.registerService(clazz, service);
+    return this;
   }
 
   /**
