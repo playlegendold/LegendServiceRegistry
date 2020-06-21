@@ -62,7 +62,7 @@ public interface TestService extends Service {
 }
 ```
 
-This class provides an implementation of our created interface. 
+This class provides an implementation of your created interface. 
 It's also possible to directly implement Service interface in this class and do it without an additional interface.
 ```java
 public class TestServiceImplementation implements TestService {
@@ -84,7 +84,7 @@ public class TestServiceImplementation implements TestService {
 }
 ```
 
-This is our main class. Additionally it's our ServiceAccessorOwner. 
+This is your main class. Additionally it's your ServiceAccessorOwner. 
 The ServiceAccessorOwner is the owner of one or multiple ServiceAccessor. You can access your defined services by using ServiceAccessor class.
 ```java
 public class TestApplication implements ServiceAccessorOwner {
@@ -96,7 +96,7 @@ public class TestApplication implements ServiceAccessorOwner {
   }
 
   public TestApplication() {
-    // Register our service
+    // Register your service
     accessor.register(TestService.class, new TestServiceImplementation());
   }
 
@@ -114,12 +114,12 @@ public class TestEventHandler {
   private final TestService testService;
 
   public TestEventHandler(final ServiceAccessor accessor) {
-    // Access our created service via a ServiceAccessor
+    // Access your created service via a ServiceAccessor
     testService = accessor.access(TestService.class);
   }
 
   public void onEvent() {
-    // Call some cool methods from our service
+    // Call some cool methods from your service
     testService.doSomeCrazyStuff();
   }
 }
