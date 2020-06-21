@@ -1,4 +1,4 @@
-![Legend](https://static.playlegend.net/full-logo-stone-highres.png)
+![Legend](https://static.playlegend.net/full-logo-stone-highres.png | width=750)
 
 # LegendServiceRegistry
 LegendServiceRegistry is a easy to use api for registering and accesing services on **Bukkit**, **BungeeCord** and other **independent platforms**.
