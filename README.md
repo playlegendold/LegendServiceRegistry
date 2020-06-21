@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.playlegend:legendserviceregistry-MODULE:VERSION")
+    compileOnly("net.playlegend:legendserviceregistry-MODULE:VERSION:all")
 }
 ```
 
