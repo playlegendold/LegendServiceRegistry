@@ -7,7 +7,7 @@ on:
       - feature/*
       - bugfix/*
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 jobs:
   build:
     runs-on: ubuntu-18.04
