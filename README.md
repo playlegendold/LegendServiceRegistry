@@ -6,7 +6,7 @@ LegendServiceRegistry is a easy to use api for registering and accesing services
 ## Project structure
 LegendServiceRegistry is split into three modules.
 - A platform independent module named legendserviceregistry-common
-- A module specifically made for use with Bukkit named legendserviceregistry-bukkit
+- A module specifically made for Bukkit named legendserviceregistry-bukkit
 - A module for BungeeCord named legendserviceregistry-proxy
 
 ## Maven Repository
