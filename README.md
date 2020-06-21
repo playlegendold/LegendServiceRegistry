@@ -77,7 +77,7 @@ public class TestServiceImplementation implements TestService {
     StringBuilder builder = new StringBuilder();
     builder.append("Hello");
     builder.append(" ");
-    builder.append(" World");
+    builder.append("World!");
     System.out.println(builder.toString());
   }
 
