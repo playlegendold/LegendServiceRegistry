@@ -42,7 +42,7 @@ dependencies {
 </dependency>
 ```
 
-## Custom build
+## Build a custom version
 To build your own version of LegendServiceRegistry just execute the following command in project root.
 ```shell script
 ./gradlew shadowJar
