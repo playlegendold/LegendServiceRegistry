@@ -2,7 +2,8 @@ name: Publish artifacts
 on:
   push:
     branches:
-      - master
+      - prod
+      - stage
       - dev
       - feature/*
       - bugfix/*
