@@ -1,4 +1,6 @@
-val branch: String? = System.getenv("GITHUB_REF")?.replace("refs/heads/", "")
+val branch: String? = System.getenv("GITHUB_REF")
+        ?.replace("refs/heads/", "")
+        ?.replace("refs/tags/", "")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
