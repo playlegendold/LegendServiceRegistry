@@ -7,8 +7,12 @@ version = if (System.getenv("CI") != null) {
     "dev"
 }.replace("/", "-")
 
+repositories {
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+}
+
 dependencies {
-    compileOnly("net.playlegend:bewear-api:1.15.2-dev")
+    compileOnly("org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT")
     implementation(project(":legendserviceregistry-common"))
 }
 
@@ -43,7 +47,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.net/artifactory/legend")
+            url = uri("https://repository.playlegend.net/artifactory/opensource")
         }
     }
 }

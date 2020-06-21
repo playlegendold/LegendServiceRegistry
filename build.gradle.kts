@@ -6,7 +6,6 @@ plugins {
     `maven-publish`
     checkstyle
     id("com.github.johnrengelman.shadow") version "5.1.0"
-    id("org.sonarqube") version "2.7"
     id("com.gorylenko.gradle-git-properties") version "2.2.2"
 }
 
@@ -25,7 +24,7 @@ subprojects {
     apply(plugin = "com.gorylenko.gradle-git-properties")
 
     checkstyle {
-        toolVersion = "8.31"
+        toolVersion = "8.33"
         config = project.resources.text.fromUri("https://static.playlegend.net/checkstyle.xml")
     }
 
@@ -39,19 +38,6 @@ subprojects {
 
     repositories {
         maven("https://oss.sonatype.org/content/repositories/snapshots")
-        maven("https://papermc.io/repo/repository/maven-public/")
-        maven {
-            url = uri("https://repository.playlegend.net/artifactory/legend")
-            credentials {
-                if (System.getenv("CI") != null) {
-                    username = System.getenv("repositoryUser")
-                    password = System.getenv("repositoryPassword")
-                } else {
-                    username = project.properties["repositoryUser"] as String?
-                    password = project.properties["repositoryPassword"] as String?
-                }
-            }
-        }
         mavenCentral()
         jcenter()
     }
