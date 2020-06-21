@@ -43,6 +43,7 @@ subprojects {
     }
 
     dependencies {
+        implementation("org.jetbrains:annotations:16.0.2")
         compileOnly("org.projectlombok:lombok:1.18.12")
         annotationProcessor("org.projectlombok:lombok:1.18.12")
     }

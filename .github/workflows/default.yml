@@ -6,6 +6,8 @@ on:
       - dev
       - feature/*
       - bugfix/*
+    tags:
+      - '*.*.*'
 jobs:
   build:
     runs-on: ubuntu-18.04
