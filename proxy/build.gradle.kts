@@ -1,4 +1,6 @@
-val branch: String? = System.getenv("GITHUB_REF")?.replace("refs/heads/", "")
+val branch: String? = System.getenv("GITHUB_REF")
+        ?.replace("refs/heads/", "")
+        ?.replace("refs/tags/", "")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
@@ -7,8 +9,12 @@ version = if (System.getenv("CI") != null) {
     "dev"
 }.replace("/", "-")
 
+repositories {
+    maven("https://oss.sonatype.org/content/repositories/snapshots");
+}
+
 dependencies {
-    compileOnly("net.playlegend:legendproxy:dev")
+    compileOnly("net.md-5:bungeecord-api:1.15-SNAPSHOT")
     implementation(project(":legendserviceregistry-common"))
 }
 
@@ -43,7 +49,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.net/artifactory/legend")
+            url = uri("https://repository.playlegend.net/artifactory/opensource")
         }
     }
 }

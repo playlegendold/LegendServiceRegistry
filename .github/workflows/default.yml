@@ -2,10 +2,13 @@ name: Publish artifacts
 on:
   push:
     branches:
-      - master
+      - prod
+      - stage
       - dev
       - feature/*
       - bugfix/*
+    tags:
+      - 'v*.*.*'
 jobs:
   build:
     runs-on: ubuntu-18.04

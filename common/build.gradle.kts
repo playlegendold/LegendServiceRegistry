@@ -1,4 +1,6 @@
-val branch: String? = System.getenv("GITHUB_REF")?.replace("refs/heads/", "")
+val branch: String? = System.getenv("GITHUB_REF")
+        ?.replace("refs/heads/", "")
+        ?.replace("refs/tags/", "")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
@@ -30,7 +32,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.net/artifactory/legend")
+            url = uri("https://repository.playlegend.net/artifactory/opensource")
         }
     }
 }
