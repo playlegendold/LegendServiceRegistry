@@ -24,7 +24,7 @@ subprojects {
     apply(plugin = "com.gorylenko.gradle-git-properties")
 
     checkstyle {
-        toolVersion = "8.33"
+        toolVersion = "8.34"
         config = project.resources.text.fromUri("https://static.playlegend.net/checkstyle.xml")
     }
 
@@ -49,8 +49,8 @@ subprojects {
     }
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_14
-        targetCompatibility = JavaVersion.VERSION_14
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
