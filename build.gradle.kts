@@ -7,6 +7,7 @@ plugins {
     checkstyle
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.gorylenko.gradle-git-properties") version "2.2.4"
+    id("com.github.spotbugs") version "4.6.0"
 }
 
 tasks.create<Copy>("copyHooks") {
@@ -22,6 +23,7 @@ subprojects {
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
     apply(plugin = "com.gorylenko.gradle-git-properties")
+    apply(plugin = "com.github.spotbugs")
 
     checkstyle {
         toolVersion = "8.39"
@@ -34,6 +36,11 @@ subprojects {
         keys = arrayOf("git.branch", "git.build.host", "git.build.version", "git.commit.id", "git.commit.id.abbrev",
                 "git.commit.message.full", "git.commit.message.short", "git.commit.time", "git.commit.user.email",
                 "git.commit.user.name", "git.remote.origin.url", "git.total.commit.count").toMutableList()
+    }
+
+    spotbugs {
+        ignoreFailures.set(true)
+        showProgress.set(true)
     }
 
     repositories {

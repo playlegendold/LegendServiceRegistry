@@ -4,10 +4,10 @@ val branch: String? = System.getenv("GITHUB_REF")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
-    if (branch == "dev") {
-        "dev-SNAPSHOT"
-    } else {
+    if (branch.equals("stage") || branch.equals("prod")) {
         branch.toString()
+    } else {
+        "$branch-SNAPSHOT"
     }
 } else {
     "dev-SNAPSHOT"
