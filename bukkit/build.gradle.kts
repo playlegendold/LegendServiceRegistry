@@ -4,18 +4,22 @@ val branch: String? = System.getenv("GITHUB_REF")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
-    branch.toString()
+    if (branch.equals("stage") || branch.equals("prod")) {
+        branch.toString()
+    } else {
+        "$branch-SNAPSHOT"
+    }
 } else {
-    "dev"
+    "dev-SNAPSHOT"
 }.replace("/", "-")
 
 repositories {
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT")
     implementation(project(":legendserviceregistry-common"))
+    compileOnly("com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
@@ -38,9 +42,9 @@ publishing {
             artifactId = project.name.toLowerCase()
             version = project.version.toString()
 
-            from(components["java"])
+            artifact(tasks["jar"])
+            artifact(tasks["javadocJar"])
             artifact(tasks["shadowJar"])
-            artifact(tasks["fatSources"])
         }
     }
     repositories {
@@ -49,7 +53,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.net/artifactory/opensource")
+            url = uri("https://repository.playlegend.net/artifactory/opensource/")
         }
     }
 }

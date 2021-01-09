@@ -4,9 +4,13 @@ val branch: String? = System.getenv("GITHUB_REF")
 
 group = "net.playlegend"
 version = if (System.getenv("CI") != null) {
-    branch.toString()
+    if (branch.equals("stage") || branch.equals("prod")) {
+        branch.toString()
+    } else {
+        "$branch-SNAPSHOT"
+    }
 } else {
-    "dev"
+    "dev-SNAPSHOT"
 }.replace("/", "-")
 
 tasks.register<Jar>("fatSources") {
@@ -21,9 +25,9 @@ publishing {
             artifactId = project.name.toLowerCase()
             version = project.version.toString()
 
-            from(components["java"])
+            artifact(tasks["jar"])
+            artifact(tasks["javadocJar"])
             artifact(tasks["shadowJar"])
-            artifact(tasks["fatSources"])
         }
     }
     repositories {
@@ -32,7 +36,7 @@ publishing {
                 username = System.getenv("repositoryUser")
                 password = System.getenv("repositoryPassword")
             }
-            url = uri("https://repository.playlegend.net/artifactory/opensource")
+            url = uri("https://repository.playlegend.net/artifactory/opensource/")
         }
     }
 }

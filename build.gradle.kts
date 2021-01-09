@@ -5,8 +5,9 @@ plugins {
     java
     `maven-publish`
     checkstyle
-    id("com.github.johnrengelman.shadow") version "5.1.0"
-    id("com.gorylenko.gradle-git-properties") version "2.2.2"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.gorylenko.gradle-git-properties") version "2.2.4"
+    id("com.github.spotbugs") version "4.6.0"
 }
 
 tasks.create<Copy>("copyHooks") {
@@ -22,9 +23,10 @@ subprojects {
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
     apply(plugin = "com.gorylenko.gradle-git-properties")
+    apply(plugin = "com.github.spotbugs")
 
     checkstyle {
-        toolVersion = "8.34"
+        toolVersion = "8.39"
         config = project.resources.text.fromUri("https://static.playlegend.net/checkstyle.xml")
     }
 
@@ -36,21 +38,32 @@ subprojects {
                 "git.commit.user.name", "git.remote.origin.url", "git.total.commit.count").toMutableList()
     }
 
+    spotbugs {
+        ignoreFailures.set(true)
+        showProgress.set(true)
+    }
+
     repositories {
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
-        implementation("org.jetbrains:annotations:16.0.2")
-        compileOnly("org.projectlombok:lombok:1.18.12")
-        annotationProcessor("org.projectlombok:lombok:1.18.12")
+        implementation("org.jetbrains:annotations:20.1.0")
+        compileOnly("org.projectlombok:lombok:1.18.16")
+        annotationProcessor("org.projectlombok:lombok:1.18.16")
     }
 
     java {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        withJavadocJar()
+    }
+
+    tasks.javadoc {
+        options.encoding = "UTF-8"
+        if (JavaVersion.current().isJava9Compatible) {
+            (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+        }
     }
 
     tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
