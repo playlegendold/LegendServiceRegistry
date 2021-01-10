@@ -1,8 +1,8 @@
-rootProject.name = "legendserviceregistry"
+rootProject.name = "LegendServiceRegistry"
 include("common")
 include("proxy")
 include("bukkit")
 
-project(":common").name = "legendserviceregistry-common"
-project(":proxy").name = "legendserviceregistry-proxy"
-project(":bukkit").name = "legendserviceregistry-bukkit"
+project(":common").name = "LegendServiceRegistry-Common"
+project(":proxy").name = "LegendServiceRegistry-Proxy"
+project(":bukkit").name = "LegendServiceRegistry-Bukkit"
