@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":legendserviceregistry-common"))
+    implementation(project(":LegendServiceRegistry-Common"))
     compileOnly("com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT")
 }
 
