@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation(project(":LegendServiceRegistry-Common"))
-    compileOnly("com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
