@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation(project(":LegendServiceRegistry-Common"))
-    compileOnly("io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT")
+    compileOnly("io.github.waterfallmc:waterfall-api:1.16-R0.5-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
