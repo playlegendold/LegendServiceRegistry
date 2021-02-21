@@ -1,3 +1,5 @@
+import groovy.util.Node
+
 val branch: String? = System.getenv("GITHUB_REF")
         ?.replace("refs/heads/", "")
         ?.replace("refs/tags/", "")
@@ -20,7 +22,7 @@ repositories {
 
 dependencies {
     implementation(project(":LegendServiceRegistry-Common"))
-    compileOnly("com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
@@ -32,7 +34,7 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.register<Jar>("fatSources") {
-    from(sourceSets["main"].allSource, project(":legendserviceregistry-common").sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource, project(":LegendServiceRegistry-Common").sourceSets["main"].allSource)
     archiveClassifier.set("sources")
 }
 

@@ -2,7 +2,7 @@ group = "net.playlegend"
 version = "1.0.0"
 
 plugins {
-    java
+    `java-library`
     `maven-publish`
     checkstyle
     id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -18,7 +18,7 @@ tasks.create<Copy>("copyHooks") {
 tasks.getByPath("prepareKotlinBuildScriptModel").dependsOn("copyHooks")
 
 subprojects {
-    apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "maven-publish")
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")
@@ -27,7 +27,7 @@ subprojects {
 
     checkstyle {
         toolVersion = "8.39"
-        config = project.resources.text.fromUri("https://static.playlegend.net/checkstyle.xml")
+        config = project.resources.text.fromUri("https://assets.playlegend.net/checkstyle.xml")
     }
 
     gitProperties {
@@ -49,8 +49,8 @@ subprojects {
 
     dependencies {
         implementation("org.jetbrains:annotations:20.1.0")
-        compileOnly("org.projectlombok:lombok:1.18.16")
-        annotationProcessor("org.projectlombok:lombok:1.18.16")
+        compileOnly("org.projectlombok:lombok:1.18.18")
+        annotationProcessor("org.projectlombok:lombok:1.18.18")
     }
 
     java {

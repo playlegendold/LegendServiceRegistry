@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation(project(":LegendServiceRegistry-Common"))
-    compileOnly("io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT")
+    compileOnly("io.github.waterfallmc:waterfall-api:1.16-R0.5-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
@@ -32,7 +32,7 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.register<Jar>("fatSources") {
-    from(sourceSets["main"].allSource, project(":legendserviceregistry-common").sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource, project(":LegendServiceRegistry-Common").sourceSets["main"].allSource)
     archiveClassifier.set("sources")
 }
 
