@@ -1,3 +1,5 @@
+import groovy.util.Node
+
 val branch: String? = System.getenv("GITHUB_REF")
         ?.replace("refs/heads/", "")
         ?.replace("refs/tags/", "")
@@ -20,7 +22,7 @@ repositories {
 
 dependencies {
     implementation(project(":LegendServiceRegistry-Common"))
-    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
+    //compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 }
 
 val tokens = mapOf("VERSION" to project.version)
@@ -32,7 +34,7 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.register<Jar>("fatSources") {
-    from(sourceSets["main"].allSource, project(":legendserviceregistry-common").sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource, project(":LegendServiceRegistry-Common").sourceSets["main"].allSource)
     archiveClassifier.set("sources")
 }
 
@@ -46,6 +48,16 @@ publishing {
             artifact(tasks["jar"])
             artifact(tasks["javadocJar"])
             artifact(tasks["shadowJar"])
+
+            pom.withXml {
+                val dependenciesNode = asNode().appendNode("dependencies")
+
+                val filteredConfigurations = configurations.filter {
+                    it.name == "api" || it.name == "implementation"
+                }
+
+                addDependenciesToPom(filteredConfigurations, dependenciesNode)
+            }
         }
     }
     repositories {
@@ -55,6 +67,20 @@ publishing {
                 password = System.getenv("repositoryPassword")
             }
             url = uri("https://repository.playlegend.net/artifactory/opensource/")
+        }
+    }
+}
+
+fun addDependenciesToPom(filteredConfigurations: List<Configuration>, dependenciesNode: Node) {
+    filteredConfigurations.forEach { configuration ->
+        configuration.dependencies.forEach { dependency ->
+            if (dependency !is SelfResolvingDependency || dependency is ProjectDependency) {
+                val dependencyNode = dependenciesNode.appendNode("dependency")
+                dependencyNode.appendNode("groupId", dependency.group)
+                dependencyNode.appendNode("artifactId", dependency.name.toLowerCase())
+                dependencyNode.appendNode("version", dependency.version)
+                dependencyNode.appendNode("scope", configuration.name)
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ group = "net.playlegend"
 version = "1.0.0"
 
 plugins {
-    java
+    `java-library`
     `maven-publish`
     checkstyle
     id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -18,7 +18,7 @@ tasks.create<Copy>("copyHooks") {
 tasks.getByPath("prepareKotlinBuildScriptModel").dependsOn("copyHooks")
 
 subprojects {
-    apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "maven-publish")
     apply(plugin = "checkstyle")
     apply(plugin = "com.github.johnrengelman.shadow")

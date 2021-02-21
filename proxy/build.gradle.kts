@@ -32,7 +32,7 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.register<Jar>("fatSources") {
-    from(sourceSets["main"].allSource, project(":legendserviceregistry-common").sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource, project(":LegendServiceRegistry-Common").sourceSets["main"].allSource)
     archiveClassifier.set("sources")
 }
 
