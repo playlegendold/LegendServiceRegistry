@@ -18,7 +18,7 @@ jobs:
           repositoryPassword: ${{ secrets.repositoryPassword }}
         id: extract_buildscan
       - name: Add Buildscan to PR
-        uses: mshick/add-pr-comment@07f690343c25a94e24a8acb70d03c86b701ae322
+        uses: mshick/add-pr-comment@5cd99bf9c186219af43341076f1fe9c09e5a9934
         with:
           message: |
             Here is your **BuildScan** from latest pipeline build: ${{steps.extract_buildscan.outputs.scan_url}}
