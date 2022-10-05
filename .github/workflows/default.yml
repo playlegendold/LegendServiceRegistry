@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
       - name: Cache Gradle related stuff
         uses: actions/cache@v2.1.4
         with:
@@ -39,7 +39,7 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
       - name: Cache Gradle related stuff
         uses: actions/cache@v2.1.4
         with:
@@ -64,7 +64,7 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
       - name: Cache Gradle related stuff
         uses: actions/cache@v2.1.4
         with:
@@ -89,7 +89,7 @@ jobs:
     runs-on: self-hosted
     needs: [checkstyle, spotbugs]
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.1.0
       - name: Cache Gradle related stuff
         uses: actions/cache@v2.1.4
         with:
