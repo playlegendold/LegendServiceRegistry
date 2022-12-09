@@ -48,7 +48,7 @@ subprojects {
     }
 
     dependencies {
-        implementation("org.jetbrains:annotations:20.1.0")
+        implementation("org.jetbrains:annotations:23.1.0")
         compileOnly("org.projectlombok:lombok:1.18.18")
         annotationProcessor("org.projectlombok:lombok:1.18.18")
     }
